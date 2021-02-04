@@ -1,0 +1,55 @@
+<!-- api address! url: 'https://randomuser.me/api/',-->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> random user api </title>
+  <style>
+    #user-name {
+
+      text-align: center;
+      border: 1px solid red;
+      padding: 20px;
+      margin: 0 auto;
+      width: 50%;
+      background-color: rgb(181, 192, 21)
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1 id="user-name"></h1>
+
+  <script>
+
+
+
+    function getUser() {
+      fetch('https://randomuser.me/api/')
+        .then(res => res.json())
+        .then(data => {
+          // console.log(data.results[0])
+
+          const user = data.results[0];
+          const name = user.name;
+          const fullName = `${name.title} ${name.first} ${name.last}`
+
+          document.getElementById('user-name').innerText = fullName;
+          console.log(fullName)
+        })
+    }
+
+    getUser();
+    setInterval(() => {
+      getUser();
+    }, 2000);
+  </script>
+</body>
+
+</html>
